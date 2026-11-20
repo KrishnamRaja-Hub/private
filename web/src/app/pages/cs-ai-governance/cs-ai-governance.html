@@ -84,7 +84,7 @@
 
 @if (openMember(); as m) {
   <div class="modal-overlay" aria-hidden="true"></div>
-  <div class="modal-scroll-wrapper" role="dialog" aria-modal="true" [attr.aria-label]="m.name + ' profile'" (keydown)="onModalKey($event)">
+  <div class="modal-scroll-wrapper" role="dialog" aria-modal="true" [attr.aria-label]="m.name + ' profile'">
     <div class="modal-spacer" (click)="close()" aria-hidden="true"></div>
     <div class="modal-panel">
       <div aria-hidden="true" class="modal-accent-bar"></div>

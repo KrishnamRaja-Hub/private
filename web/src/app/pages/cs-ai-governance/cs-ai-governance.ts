@@ -1,9 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   DestroyRef,
   ElementRef,
-  afterNextRender,
   computed,
   inject,
   signal,
@@ -12,7 +12,6 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { Breadcrumb, Crumb } from '../../shared/breadcrumb/breadcrumb';
 import { PageNavigation } from '../../shared/page-navigation/page-navigation';
-import { GsapService } from '../../shared/gsap.service';
 import { COMMITTEE_MEMBERS } from './committee-members.data';
 import { CONTROL_PHASES, MANDATE, PRINCIPLES } from './governance.data';
 import { MandateStatement } from './sections/mandate-statement';
@@ -30,9 +29,7 @@ const ACCENT = '#7C3AED'; // the card accent every /leadership and /executive-te
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CsAiGovernance {
-  private readonly gsap = inject(GsapService);
   private readonly doc = inject(DOCUMENT);
-  private readonly host = inject(ElementRef<HTMLElement>);
 
   protected readonly crumbs: readonly Crumb[] = [
     { label: 'Who We Are', url: '/leadership' },
@@ -60,18 +57,6 @@ export class CsAiGovernance {
 
   constructor() {
     const destroyRef = inject(DestroyRef);
-    afterNextRender(() => {
-      const root = this.host.nativeElement as HTMLElement;
-      // Hero entrance: the live site's hero copy fades in and its KPI tiles rise with an
-      // 80 ms stagger from 250 ms (fadeInUp, 24 px). Plays once on load.
-      const revert = this.gsap.animate(root, ({ motion, gsap }) => {
-        if (!motion) return;
-        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-        tl.from('.hero-content', { autoAlpha: 0, y: 24, duration: 0.6 })
-          .from('.kpi-card', { autoAlpha: 0, y: 24, duration: 0.5, stagger: 0.08 }, 0.25);
-      });
-      destroyRef.onDestroy(revert);
-    });
     destroyRef.onDestroy(() => this.unlockScroll());
   }
 
@@ -94,7 +79,9 @@ export class CsAiGovernance {
     this.openIndex.set((i + delta + this.members.length) % this.members.length);
   }
 
+  @HostListener('document:keydown', ['$event'])
   protected onModalKey(e: KeyboardEvent): void {
+    if (this.openIndex() === null) return;
     if (e.key === 'Escape') this.close();
     else if (e.key === 'ArrowRight') this.step(1);
     else if (e.key === 'ArrowLeft') this.step(-1);
