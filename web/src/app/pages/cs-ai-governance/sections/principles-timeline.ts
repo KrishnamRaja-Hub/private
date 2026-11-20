@@ -42,7 +42,7 @@ const ICONS: Record<number, readonly string[]> = {
 
         <ol class="timeline-grid">
           @for (p of principles; track p.index; let odd = $odd) {
-            <li class="timeline-row" [class.timeline-row-left]="!odd" [class.timeline-row-right]="odd">
+            <li class="timeline-row" [class.timeline-row-left]="!odd" [class.timeline-row-right]="odd" [style.--c]="p.color">
               <div class="rail-column" aria-hidden="true">
                 <div class="rail-spacer"></div>
                 <div class="rail-dot" [style.background]="p.color"
@@ -66,7 +66,7 @@ const ICONS: Record<number, readonly string[]> = {
         </ol>
 
         <div class="timeline-end">
-          <div class="end-circle" aria-hidden="true">{{ controlCount }}</div>
+          <div class="end-circle" aria-hidden="true"><span class="end-count">{{ controlCount }}</span></div>
           <h3 class="end-title">{{ controlCount }} controls, each traceable to FREE-AI</h3>
           <p class="end-desc">What responsible delivery looks like across the lifecycle.</p>
         </div>
@@ -89,6 +89,8 @@ export class PrinciplesTimeline {
       const revert = gs.animate(root, ({ motion, gsap, ScrollTrigger }) => {
         const rows = gsap.utils.toArray<HTMLElement>('.timeline-row', root);
         const fill = root.querySelector<HTMLElement>('.progress-rail-fill');
+        const count = root.querySelector<HTMLElement>('.end-count');
+        const end = root.querySelector<HTMLElement>('.timeline-end');
 
         if (!motion) {
           rows.forEach(r => r.classList.add('animated'));
@@ -102,12 +104,40 @@ export class PrinciplesTimeline {
           ease: 'none',
           scrollTrigger: { trigger: root.querySelector('.timeline-grid'), start: 'top 60%', end: 'bottom 60%', scrub: true },
         });
+
+        // Cards slide in from their own side; the live CSS pins opacity/transform with
+        // !important, so the motion runs through --rx/--ro (see principles-timeline.css).
+        rows.forEach(r => gsap.set(r.querySelector('.milestone-card'), { '--rx': r.classList.contains('timeline-row-left') ? -56 : 56, '--ro': 0 }));
+        gsap.set(root.querySelectorAll('.milestone-icon'), { scale: 0.4, rotation: -20 });
         ScrollTrigger.batch(rows, {
-          start: 'top 80%',
+          start: 'top 82%',
           once: true,
-          onEnter: batch => batch.forEach(r => r.classList.add('animated')),
+          onEnter: batch => {
+            batch.forEach(r => r.classList.add('animated'));
+            const cards = batch.map(r => r.querySelector('.milestone-card'));
+            gsap.to(cards, { '--rx': 0, '--ro': 1, duration: 0.8, ease: 'power3.out', stagger: 0.12 });
+            gsap.to(batch.map(r => r.querySelector('.milestone-icon')), {
+              scale: 1, rotation: 0, duration: 0.7, ease: 'back.out(2.2)', delay: 0.25, stagger: 0.12, clearProps: 'transform',
+            });
+          },
         });
-        return () => rows.forEach(r => r.classList.remove('animated'));
+
+        // The Sutra the reader is on: its dot swells and its card takes its colour.
+        rows.forEach(r => ScrollTrigger.create({ trigger: r, start: 'top 55%', end: 'bottom+=48 55%', toggleClass: 'is-active' }));
+
+        // Close: the end circle pops and counts up to the number of controls.
+        if (count && end) {
+          const n = { v: 0 };
+          gsap.set(end, { autoAlpha: 0, y: 24 });
+          gsap.timeline({ scrollTrigger: { trigger: end, start: 'top 85%', once: true } })
+            .to(end, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+            .from('.end-circle', { scale: 0.3, duration: 0.6, ease: 'back.out(2)' }, 0)
+            .to(n, { v: this.controlCount, duration: 1, ease: 'power2.out', onUpdate: () => (count.textContent = String(Math.round(n.v))) }, 0.15);
+        }
+        return () => {
+          rows.forEach(r => r.classList.remove('animated', 'is-active'));
+          if (count) count.textContent = String(this.controlCount);
+        };
       });
       destroyRef.onDestroy(revert);
     });

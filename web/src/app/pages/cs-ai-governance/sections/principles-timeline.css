@@ -13,3 +13,28 @@ ol.timeline-grid { list-style: none; margin: 0; padding: 0; }
 @media (prefers-reduced-motion: reduce) {
   .rail-dot, .rail-line, .rail-connector { animation: none !important; transform: none !important; }
 }
+
+/* Reveal: GSAP tweens --rx/--ro; these win over the ported !important pins (same
+   specificity, later sheet). Hover lift uses `translate` so it composes with the reveal. */
+.timeline-row .milestone-card {
+  opacity: var(--ro, 1) !important;
+  transform: translateX(calc(var(--rx, 0) * 1px)) !important;
+  transition: translate .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease !important;
+  cursor: default;
+}
+/* Same hover recipe as the site's director cards: lift 4px, soft shadow, 2px ring in the card's colour. */
+.milestone-card:hover,
+.timeline-row.is-active .milestone-card {
+  box-shadow: 0 12px 40px #0a16281a, 0 0 0 2px color-mix(in srgb, var(--c) 35%, transparent);
+}
+.milestone-card:hover { translate: 0 -4px; }
+.milestone-icon { transition: scale .35s cubic-bezier(.34,1.56,.64,1), rotate .35s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease; }
+.milestone-card:hover .milestone-icon { scale: 1.12; rotate: -8deg; box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 14%, transparent); }
+.rail-dot { transition: scale .35s cubic-bezier(.34,1.56,.64,1); }
+.timeline-row.is-active .rail-dot,
+.timeline-row:has(.milestone-card:hover) .rail-dot { scale: 1.6; }
+.end-circle { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .milestone-card:hover { translate: none; }
+  .milestone-card:hover .milestone-icon, .timeline-row:has(.milestone-card:hover) .rail-dot { scale: none; rotate: none; }
+}
