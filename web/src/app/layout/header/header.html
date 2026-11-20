@@ -1,0 +1,183 @@
+<header class="header" [class.scrolled]="scrolled()" (mouseleave)="close()">
+  <div class="nav-bar-border">
+    <div class="nav-container">
+      <div class="nav-inner">
+        <a [href]="'/' | site" aria-label="ReBIT - Home" class="logo-link">
+          <div class="logo-wrapper">
+            <img alt="ReBIT Logo" width="152" height="40" src="/assets/images/rebit-logo-header.png" />
+          </div>
+        </a>
+
+        <nav role="menubar" aria-label="Main navigation" class="desktop-nav">
+          @for (section of menu; track section.title; let i = $index) {
+            <div role="none" class="nav-item-wrapper">
+              <button
+                type="button"
+                role="menuitem"
+                class="nav-link"
+                [class.open]="open() === i"
+                [attr.aria-expanded]="open() === i"
+                aria-haspopup="true"
+                [attr.aria-controls]="panelId(section.title)"
+                (mouseenter)="show(i)"
+                (click)="toggle(i)"
+              >
+                {{ section.title }}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="chevron"
+                  [class.rotated]="open() === i"><path d="m6 9 6 6 6-6"></path></svg>
+              </button>
+            </div>
+          }
+        </nav>
+
+        <div class="toolbar">
+          <button aria-label="Open accessibility settings" class="a11y-trigger" type="button">
+            <img src="/assets/images/accessibility-icon.svg" alt="" aria-hidden="true" width="20" height="20" />
+          </button>
+          <a class="login-btn" [href]="'/login' | site">Login</a>
+        </div>
+
+        <button class="mobile-toggle" type="button" [attr.aria-label]="mobileOpen() ? 'Close menu' : 'Open menu'"
+          [attr.aria-expanded]="mobileOpen()" (click)="toggleMobile()">
+          @if (mobileOpen()) {
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          } @else {
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (openSection(); as section) {
+    <div role="menu" class="mega-dropdown" [id]="panelId(section.title)" [attr.aria-label]="section.title + ' submenu'">
+      <div class="nav-container">
+        @if (section.careers) {
+          <div class="careers-panel">
+            <div class="careers-brand">
+              <div class="careers-brand-orb orb-1"></div>
+              <div class="careers-brand-orb orb-2"></div>
+              <div class="careers-brand-content">
+                <div class="careers-badge"><span class="careers-badge-dot"></span><span class="careers-badge-text">CAREERS AT REBIT</span></div>
+                <h3 class="careers-heading">Build What's Next. Make an Impact.</h3>
+                <p class="careers-desc">{{ section.description }}</p>
+              </div>
+              <div class="careers-ctas">
+                <a [href]="'/careers' | site" class="careers-cta-primary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
+                  Explore Opportunities
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+              </div>
+            </div>
+            <div class="careers-cards">
+              <a [href]="'/careers#jobs' | site" class="careers-card">
+                <div class="careers-card-icon" style="background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.22);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
+                </div>
+                <p class="careers-card-title">Open Positions</p>
+                <p class="careers-card-desc">Browse current vacancies across technology, cybersecurity, and operations.</p>
+                <span class="careers-card-tag" style="color: #7c3aed;">View All Jobs
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
+                </span>
+              </a>
+              <a [href]="'/careers#life' | site" class="careers-card">
+                <div class="careers-card-icon" style="background: rgba(43, 196, 190, 0.1); border-color: rgba(43, 196, 190, 0.22);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BC4BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                </div>
+                <p class="careers-card-title">Life at ReBIT</p>
+                <p class="careers-card-desc">Discover our culture, employee stories, benefits, and what makes ReBIT unique.</p>
+                <span class="careers-card-tag" style="color: #2bc4be;">Learn More
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </span>
+              </a>
+              <a [href]="'/careers#campus' | site" class="careers-card">
+                <div class="careers-card-icon" style="background: rgba(168, 64, 216, 0.1); border-color: rgba(168, 64, 216, 0.22);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A840D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 10 3 12 0v-5"></path></svg>
+                </div>
+                <p class="careers-card-title">Freshers Hiring</p>
+                <p class="careers-card-desc">Internships and graduate hiring programs for students and fresh graduates.</p>
+                <span class="careers-card-tag" style="color: #a840d8;">Apply Now
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        } @else {
+          <div class="mega-panels">
+            <div class="mega-left">
+              <h3 class="mega-title">{{ section.title }}</h3>
+              <p class="mega-desc">{{ section.description }}</p>
+            </div>
+            <div role="tablist" aria-label="Sub-categories" class="mega-middle">
+              @for (group of section.groups; track group.title; let g = $index) {
+                <div role="tab" tabindex="0" class="sub-cat-item" [class.active]="activeGroup() === g"
+                  [attr.aria-selected]="activeGroup() === g" [attr.aria-controls]="'subcat-panel-' + g"
+                  (mouseenter)="activeGroup.set(g)" (focus)="activeGroup.set(g)" (keydown.enter)="activeGroup.set(g)">
+                  <span class="sub-cat-label">{{ group.title }}</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="sub-chevron"><path d="m9 18 6-6-6-6"></path></svg>
+                </div>
+              }
+            </div>
+            @if (section.groups[activeGroup()]; as group) {
+              <div role="tabpanel" class="mega-right" [id]="'subcat-panel-' + activeGroup()" [attr.aria-label]="group.title + ' links'">
+                @if (group.url) {
+                  <a class="view-all-link" [href]="group.url | site">View all {{ group.title }}
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                  </a>
+                }
+                <div role="list" class="children-grid">
+                  @for (link of group.children; track link.url) {
+                    <a role="listitem" class="child-link" [href]="link.url | site"><span aria-hidden="true" class="child-dot"></span> {{ link.title }}</a>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+    <div aria-hidden="true" class="mega-overlay" (click)="close()"></div>
+  }
+
+  @if (mobileOpen()) {
+    <div role="navigation" aria-label="Mobile navigation" class="mobile-menu">
+      <div class="mobile-menu-inner">
+        @for (section of menu; track section.title; let i = $index) {
+          <div class="mobile-nav-item">
+            <button class="mobile-nav-btn" type="button" [class.active]="mobileExpanded() === i"
+              [attr.aria-expanded]="mobileExpanded() === i" [attr.aria-controls]="'mobile-panel-' + section.title"
+              (click)="toggleMobileSection(i)">
+              {{ section.title }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mobile-chevron"
+                [class.rotated]="mobileExpanded() === i"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            @if (mobileExpanded() === i) {
+              <div class="mobile-subcats" [id]="'mobile-panel-' + section.title">
+                @for (group of section.groups; track group.title) {
+                  <div class="mobile-subcat">
+                    <p class="mobile-subcat-heading">{{ group.title.toUpperCase() }}</p>
+                    @for (link of group.children; track link.url) {
+                      <a class="mobile-child-link" [href]="link.url | site"><span aria-hidden="true" class="mobile-child-dot"></span>{{ link.title }}</a>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+        <div class="mobile-bottom">
+          <button aria-label="Open accessibility settings" class="a11y-trigger" type="button">
+            <img src="/assets/images/accessibility-icon.svg" alt="" aria-hidden="true" width="20" height="20" />
+          </button>
+          <a class="mobile-login-btn" [href]="'/login' | site">Login</a>
+        </div>
+      </div>
+    </div>
+  }
+</header>

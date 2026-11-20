@@ -1,0 +1,27 @@
+[
+  {
+    "check": "container",
+    "target": "page",
+    "reason": "The page must be identical to rebit.org.in, whose design system uses .hero-container/.content-container (1280px, 5rem gutters) and no .wrap; client brief."
+  },
+  {
+    "check": "effect-kind",
+    "target": "(the page)",
+    "reason": "Client asked for minor GSAP; ScrollTrigger only reproduces motion the live site already ships (Our Story word highlight and timeline rail)."
+  },
+  {
+    "check": "hero-screen",
+    "target": "section.hero",
+    "reason": "ReBIT inner-page heroes are a short pastel band (as /leadership, /our-story); a full-screen hero would break the identical-look brief."
+  },
+  {
+    "check": "heading-scale",
+    "target": "h2#scope-title",
+    "reason": "ReBIT's own type scale (hero-title clamp 24-48px, section-title clamp 26-40px) is reused verbatim so the page matches the live site."
+  },
+  {
+    "check": "phone-number",
+    "target": "div.footer-grid > div.footer-brand-col > div.contact-info > a.contact-link:nth-of-type(1)",
+    "reason": "ReBIT's published switchboard number in the site-wide footer, identical to every rebit.org.in page; not a private contact."
+  }
+]

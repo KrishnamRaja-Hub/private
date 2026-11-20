@@ -1,0 +1,24 @@
+/* Ported from rebit.org.in live component styles (Angular emulated encapsulation re-scopes them). Keep in sync with the site. */
+
+.page-nav-wrapper{max-width:1280px;margin:0 auto;padding:3rem 1.5rem 4rem}
+@media(min-width:1024px){.page-nav-wrapper{padding-left:5rem;padding-right:5rem}
+}
+.page-nav-border{border-top:1px solid #E8EBF0;padding-top:2.5rem}
+.page-nav-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+@media(min-width:640px){.page-nav-grid:not(.single){grid-template-columns:1fr 1fr}
+}
+.page-nav-grid.single{max-width:448px;margin-left:auto}
+.nav-card{display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:12px;border:1px solid #E8EBF0;background:#fff;text-decoration:none;transition:all .3s;width:calc(49% - 8px)}
+@media(max-width:767px){.nav-card{width:100%}
+}
+.page-nav-grid.single   .nav-card{width:100%}
+.nav-card:hover{border-color:#7c3aed33;box-shadow:0 4px 20px #7c3aed14}
+.nav-card-next{text-align:right}
+.nav-icon-box{width:40px;height:40px;border-radius:12px;background:#f3eeff;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#7c3aed;transition:all .3s}
+.nav-card:hover   .nav-icon-box{background:#7c3aed;color:#fff}
+.nav-text{min-width:0;flex:1;display:flex;flex-direction:column}
+.text-right{text-align:right}
+.nav-label{color:#94a3b8;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.nav-title{color:#0a1628;font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-subtitle{color:#6b7a90;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+

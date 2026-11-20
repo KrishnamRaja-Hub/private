@@ -1,0 +1,146 @@
+<div class="page">
+  <!-- Hero: same structure and styles as /our-story (breadcrumb, title, lead, KPI strip). -->
+  <section class="hero" data-enter>
+    <div class="hero-orbs" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+    <div class="hero-container">
+      <app-breadcrumb [items]="crumbs" />
+      <div class="hero-content">
+        <h1 class="hero-title">CS &amp; AI Governance Sub Committee</h1>
+        <p class="hero-subtitle">The board-level committee that oversees cyber security and AI at ReBIT: it approves AI policy, reviews AI incidents and usage, and traces every AI control to RBI's FREE-AI framework.</p>
+      </div>
+      <div class="kpi-grid">
+        @for (kpi of kpis; track kpi.label) {
+          <div class="kpi-card">
+            <div class="kpi-icon-box" [style.background]="kpi.tint">
+              @if (kpi.icon) {
+                <img width="24" height="24" class="kpi-icon" [src]="kpi.icon" alt="" />
+              } @else {
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" class="kpi-icon" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              }
+            </div>
+            <div class="kpi-text">
+              <p class="kpi-value">{{ kpi.value }}</p>
+              <p class="kpi-label">{{ kpi.label }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Mandate: Our Story's word-by-word statement, scrubbed with GSAP ScrollTrigger. -->
+  <app-mandate-statement [text]="mandate" brandPhrase="CS & AI Governance Sub Committee." />
+
+  <!-- Committee: /leadership director cards + profile modal. -->
+  <section class="content-section" id="members" aria-labelledby="members-title">
+    <div class="content-container">
+      <div class="directors-header">
+        <span class="section-badge">THE COMMITTEE</span>
+        <h2 class="directors-title" id="members-title">Meet the Committee</h2>
+        <p class="directors-subtitle">Meets quarterly, or as needed. Quorum is the Chair and a majority of members.</p>
+      </div>
+      <div class="directors-grid">
+        @for (m of members; track m.id; let i = $index) {
+          <button #card type="button" class="director-card"
+            [attr.aria-label]="'View profile of ' + m.name + ', ' + m.title"
+            [style.--card-color]="accent" [style.--card-color-border]="accent + '50'"
+            [style.--card-color-bg]="accent + '15'" [style.--card-color-border-tag]="accent + '35'"
+            (click)="open(i, card)">
+            <div class="director-photo" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.125) 0%, rgba(124, 58, 237, 0.03) 100%);">
+              @if (m.photo) {
+                <img class="director-photo-inner" [alt]="m.name" [src]="m.photo" width="720" height="525" loading="lazy" />
+              } @else {
+                <span class="director-initials" [style.color]="accent" aria-hidden="true">{{ m.initials }}</span>
+              }
+            </div>
+            <div class="director-info">
+              <span class="director-tag" style="background: rgba(124, 58, 237, 0.082); border-color: rgba(124, 58, 237, 0.208); color: rgb(124, 58, 237);">{{ m.committeeRole }}</span>
+              <p class="director-name">{{ m.name }}</p>
+              <p class="director-role">{{ m.title }}</p>
+              <div class="director-cta" aria-hidden="true">
+                <div class="cta-line" style="background: rgb(124, 58, 237);"></div>
+                <span class="cta-text" style="color: rgb(124, 58, 237);">VIEW PROFILE</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" class="cta-arrow" style="color: rgb(124, 58, 237);"><path d="M9 18l6-6-6-6"></path></svg>
+              </div>
+              <div class="director-divider"></div>
+            </div>
+            <div class="director-accent" style="background: rgb(124, 58, 237);"></div>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <app-responsibilities />
+  <app-principles-timeline />
+  <app-controls-portfolio />
+
+  <app-page-navigation
+    [previous]="{ title: 'Committee Members', url: '/committee-members' }"
+    [next]="{ title: 'CSR', url: '/csr' }" />
+</div>
+
+@if (openMember(); as m) {
+  <div class="modal-overlay" aria-hidden="true"></div>
+  <div class="modal-scroll-wrapper" role="dialog" aria-modal="true" [attr.aria-label]="m.name + ' profile'" (keydown)="onModalKey($event)">
+    <div class="modal-spacer" (click)="close()" aria-hidden="true"></div>
+    <div class="modal-panel">
+      <div aria-hidden="true" class="modal-accent-bar"></div>
+      <button #closeBtn type="button" aria-label="Close profile" class="modal-close" (click)="close()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div aria-hidden="true" class="modal-drag-handle"><div class="drag-bar"></div></div>
+      <div class="modal-banner">
+        <div class="banner-photo" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.125) 0%, rgba(124, 58, 237, 0.03) 100%);">
+          @if (m.banner) {
+            <img class="banner-photo-inner" [alt]="m.name" [src]="m.banner" />
+          } @else {
+            <span class="banner-initials" [style.color]="accent" aria-hidden="true">{{ m.initials }}</span>
+          }
+        </div>
+        <div aria-hidden="true" class="banner-gradient"></div>
+        <div class="banner-info">
+          <span class="banner-tag" style="border-color: rgba(124, 58, 237, 0.314); color: rgb(124, 58, 237);">
+            <span class="banner-tag-dot" style="background: rgb(124, 58, 237);"></span> {{ m.committeeRole }}
+          </span>
+          <h2 class="banner-name">{{ m.name }}</h2>
+          <p class="banner-role">{{ m.title }}</p>
+        </div>
+        <span class="banner-counter">{{ (openIndex() ?? 0) + 1 }} / {{ members.length }}</span>
+        @if ((openIndex() ?? 0) > 0) {
+          <button type="button" aria-label="Previous member" class="banner-nav banner-prev" (click)="step(-1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+        }
+        @if ((openIndex() ?? 0) < members.length - 1) {
+          <button type="button" aria-label="Next member" class="banner-nav banner-next" (click)="step(1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        }
+      </div>
+      <div class="modal-detail">
+        @for (para of m.bio; track $index) {
+          <p class="modal-bio">{{ para }}</p>
+        } @empty {
+          <p class="modal-bio">{{ m.name }}, {{ m.title }}, is a member of the CS &amp; AI Governance Sub Committee.</p>
+        }
+      </div>
+      <div class="jump-dots-wrapper">
+        <div class="jump-dots">
+          <span class="jump-label">Jump to:</span>
+          @for (x of members; track x.id; let j = $index) {
+            <button type="button" class="jump-dot" [class.active]="j === openIndex()"
+              [style.background]="j === openIndex() ? accent : '#CBD5E1'"
+              [attr.aria-label]="'Show ' + x.name" [attr.aria-current]="j === openIndex() ? 'true' : null"
+              (click)="openIndex.set(j)"></button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

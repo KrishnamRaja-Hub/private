@@ -1,0 +1,10 @@
+/* Page-local additions to the /services/ai-enterprise portfolio pattern. */
+.content-container { max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+@media (min-width: 1024px) { .content-container { padding-left: 5rem; padding-right: 5rem; } }
+/* Four lifecycle phases instead of the live page's three service groups. */
+@media (min-width: 768px) and (max-width: 1199px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+.services-lead { color: #4a5568; font-size: 15px; line-height: 1.85; margin: 1rem 0 0; max-width: 640px; }
+.control-code { font-size: 10px; font-weight: 800; letter-spacing: -.01em; }
+.service-item-icon { width: 32px; }
+.service-item-ref { margin: 6px 0 0; font-size: 11px; font-weight: 500; color: #64748b; letter-spacing: .01em; }

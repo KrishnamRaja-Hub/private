@@ -1,0 +1,74 @@
+<footer role="contentinfo" aria-label="Site footer" class="footer">
+  @if (showTop()) {
+    <button aria-label="Scroll back to top of page" type="button" class="back-to-top-floating" (click)="toTop()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+    </button>
+  }
+  <div class="footer-main">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <div aria-label="ReBIT - Reserve Bank Information Technology" class="footer-logo">
+          <img alt="ReBIT Logo" width="197" height="40" loading="lazy" src="/assets/images/rebit-logo-footer.png" />
+        </div>
+        <p id="office-locations-heading" class="section-label">Powering India's Central Banking</p>
+        <div class="offices-list" aria-hidden="true"></div>
+        <div role="group" aria-label="Contact information" class="contact-info">
+          <a href="tel:02250233100" aria-label="Call ReBIT at 022 5023 3100" class="contact-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true" focusable="false" class="contact-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>022 5023 3100</span>
+          </a>
+          <a class="contact-link" href="mailto:info@rebit.org.in" aria-label="Email ReBIT at info@rebit.org.in">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true" focusable="false" class="contact-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>info&#64;rebit.org.in</span>
+          </a>
+        </div>
+        <div class="bottom-link-view">
+          <a [href]="'/careers' | site">View Open Positions
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><g opacity="0.6"><path d="M7.5 1.5H10.5V4.5" stroke="#5B7EE8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 7L10.5 1.5" stroke="#5B7EE8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 6.5V9.5C9 9.76522 8.89464 10.0196 8.70711 10.2071C8.51957 10.3946 8.26522 10.5 8 10.5H2.5C2.23478 10.5 1.98043 10.3946 1.79289 10.2071C1.60536 10.0196 1.5 9.76522 1.5 9.5V4C1.5 3.73478 1.60536 3.48043 1.79289 3.29289C1.98043 3.10536 2.23478 3 2.5 3H5.5" stroke="#5B7EE8" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+          </a>
+        </div>
+      </div>
+
+      @for (group of groups; track group.title) {
+        <nav class="footer-nav-col" [attr.aria-label]="group.title + ' navigation'">
+          <h4 class="footer-heading">{{ group.title }}</h4>
+          <div class="footer-groups">
+            <div class="footer-group">
+              <ul role="list" class="footer-links">
+                @for (link of group.children; track link.url) {
+                  <li><a class="footer-link" [href]="link.url | site">{{ link.title }}</a></li>
+                }
+              </ul>
+            </div>
+          </div>
+        </nav>
+      }
+
+      <div class="social-media-footer">
+        <div class="social-media-links">
+          <a class="clickable-link" href="https://www.linkedin.com/company/reserve-bank-information-technology-pvt-ltd" target="_blank" rel="noopener noreferrer" aria-label="ReBIT on LinkedIn">
+            <img alt="Linkedin Rebit" loading="lazy" src="/assets/images/social-vector-2.png" />
+          </a>
+          <a class="clickable-link" href="https://x.com/reservebankit" target="_blank" rel="noopener noreferrer" aria-label="ReBIT on X">
+            <img alt="Twitter Rebit" loading="lazy" src="/assets/images/social-vector-4.png" />
+          </a>
+        </div>
+        <div class="ten-year-logo"><img alt="rebit 10 year" loading="lazy" src="/assets/images/rebit-10-years.png" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <div class="footer-bottom-inner">
+        <p class="footer-copyright">© {{ year }} ReBIT. All rights reserved.</p>
+        <nav aria-label="Legal links" class="footer-legal">
+          <span class="legal-item"><a class="footer-legal-link" [href]="'/privacy-policy' | site">Privacy Policy</a><span aria-hidden="true" class="legal-separator"></span></span>
+          <span class="legal-item"><a class="footer-legal-link" [href]="'/terms-of-use' | site">Terms of Use</a></span>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

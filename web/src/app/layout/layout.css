@@ -1,0 +1,16 @@
+/* Ported from rebit.org.in live component styles (Angular emulated encapsulation re-scopes them). Keep in sync with the site. */
+
+.skip-to-content{position:absolute;top:-100%;left:1rem;z-index:9999;padding:.75rem 1.5rem;background-color:#044e7f;color:#fff;font-weight:600;font-size:14px;border-radius:0 0 8px 8px;text-decoration:none;transition:top .2s}
+.skip-to-content:focus{top:0}
+.layout-wrapper{min-height:100vh;width:100%;background-color:#fff}
+.main-content{position:relative}
+.main-content:focus{outline:none}
+
+
+.a11y-trigger{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:none;border:1px solid #374252;color:#3a4558;cursor:pointer;transition:all .2s}
+.a11y-trigger:hover{color:#044e7f;border-color:#044e7f;background-color:#f3eeff}
+.a11y-trigger:focus-visible{outline:2px solid #044E7F;outline-offset:2px}
+
+
+/* Skip link shows at once on focus (no slide-in). */
+.skip-to-content:focus{transition:none}

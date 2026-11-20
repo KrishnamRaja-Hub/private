@@ -1,0 +1,15 @@
+/* Page-local additions to the /our-story timeline pattern. */
+ol.timeline-grid { list-style: none; margin: 0; padding: 0; }
+.progress-rail-fill { height: 100%; }
+.milestone-year { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.milestone-header { margin-bottom: 14px; }
+.milestone-title { margin-bottom: 0; }
+.milestone-card { padding: 24px 28px; }
+.timeline-badge svg { flex-shrink: 0; }
+/* The live rail sits between header and end card; our cards are shorter, so pin it to the grid. */
+@media (min-width: 768px) {
+  .timeline-progress-rail { top: 230px; bottom: 170px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail-dot, .rail-line, .rail-connector { animation: none !important; transform: none !important; }
+}
