@@ -60,6 +60,7 @@ const ICONS: Record<number, readonly string[]> = {
                   <span class="milestone-year" [style.color]="p.textColor">Sutra {{ p.index }}</span>
                 </div>
                 <h3 class="milestone-title">{{ p.title }}</h3>
+                <p class="milestone-desc">{{ p.description }}</p>
               </div>
             </li>
           }

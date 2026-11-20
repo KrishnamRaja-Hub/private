@@ -38,3 +38,5 @@ ol.timeline-grid { list-style: none; margin: 0; padding: 0; }
   .milestone-card:hover { translate: none; }
   .milestone-card:hover .milestone-icon, .timeline-row:has(.milestone-card:hover) .rail-dot { scale: none; rotate: none; }
 }
+.milestone-title { margin-bottom: 8px; }
+.milestone-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

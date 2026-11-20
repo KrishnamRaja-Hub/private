@@ -21,6 +21,8 @@ export interface Responsibility {
 export interface Principle {
   readonly index: number;
   readonly title: string;
+  /** One line on what the Sutra expects; keep it under about 56 characters so it fits two lines on the narrowest card (768px). */
+  readonly description: string;
   readonly color: string;
   /** Darker shade of `color` for small text (4.5:1 or better on white). */
   readonly textColor: string;
