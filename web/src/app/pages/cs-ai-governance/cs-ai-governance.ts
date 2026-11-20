@@ -12,7 +12,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { Breadcrumb, Crumb } from '../../shared/breadcrumb/breadcrumb';
 import { PageNavigation } from '../../shared/page-navigation/page-navigation';
-import { GsapService, gsap } from '../../shared/gsap.service';
+import { GsapService } from '../../shared/gsap.service';
 import { COMMITTEE_MEMBERS } from './committee-members.data';
 import { CONTROL_PHASES, MANDATE, PRINCIPLES } from './governance.data';
 import { MandateStatement } from './sections/mandate-statement';
@@ -64,7 +64,7 @@ export class CsAiGovernance {
       const root = this.host.nativeElement as HTMLElement;
       // Hero entrance: the live site's hero copy fades in and its KPI tiles rise with an
       // 80 ms stagger from 250 ms (fadeInUp, 24 px). Plays once on load.
-      const revert = this.gsap.animate(root, ({ motion }) => {
+      const revert = this.gsap.animate(root, ({ motion, gsap }) => {
         if (!motion) return;
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
         tl.from('.hero-content', { autoAlpha: 0, y: 24, duration: 0.6 })

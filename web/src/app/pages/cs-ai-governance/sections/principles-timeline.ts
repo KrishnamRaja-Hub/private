@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, afterNextRender, inject } from '@angular/core';
-import { GsapService, ScrollTrigger, gsap } from '../../../shared/gsap.service';
+import { GsapService } from '../../../shared/gsap.service';
 import { CONTROL_PHASES, PRINCIPLES } from '../governance.data';
 
 /** Lucide icons (24×24, stroke) for the seven Sutras, in the live site's icon style. */
@@ -86,7 +86,7 @@ export class PrinciplesTimeline {
 
     afterNextRender(() => {
       const root = host.nativeElement as HTMLElement;
-      const revert = gs.animate(root, ({ motion }) => {
+      const revert = gs.animate(root, ({ motion, gsap, ScrollTrigger }) => {
         const rows = gsap.utils.toArray<HTMLElement>('.timeline-row', root);
         const fill = root.querySelector<HTMLElement>('.progress-rail-fill');
 

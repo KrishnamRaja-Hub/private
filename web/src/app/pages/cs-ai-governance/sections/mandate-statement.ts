@@ -8,7 +8,7 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { GsapService, gsap } from '../../../shared/gsap.service';
+import { GsapService } from '../../../shared/gsap.service';
 
 const UNLIT = '#c8d3e0'; // /our-story unlit word colour
 const INK = '#0a1628';
@@ -67,7 +67,7 @@ export class MandateStatement {
 
     afterNextRender(() => {
       const root = host.nativeElement as HTMLElement;
-      const revert = gs.animate(root, ({ motion }) => {
+      const revert = gs.animate(root, ({ motion, gsap }) => {
         const words = gsap.utils.toArray<HTMLElement>('.word, .brand-phrase', root);
         const phrase = root.querySelector<HTMLElement>('.brand-phrase');
         const phraseAt = phrase ? words.indexOf(phrase) / words.length : 1;

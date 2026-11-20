@@ -3,6 +3,7 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
+import { gzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../dist/web/browser/', import.meta.url));
@@ -21,8 +22,13 @@ createServer(async (req, res) => {
     file = join(root, 'index.html');
   }
   try {
-    const body = await readFile(file);
-    res.writeHead(200, { 'content-type': types[extname(file)] ?? 'application/octet-stream' });
+    let body = await readFile(file);
+    const headers = { 'content-type': types[extname(file)] ?? 'application/octet-stream' };
+    if (/\bgzip\b/.test(req.headers['accept-encoding'] ?? '') && /^(text|image\/svg|application\/json)|javascript/.test(headers['content-type'])) {
+      body = gzipSync(body);
+      headers['content-encoding'] = 'gzip';
+    }
+    res.writeHead(200, headers);
     res.end(body);
   } catch {
     res.writeHead(404).end();
