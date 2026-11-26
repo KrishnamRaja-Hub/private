@@ -97,13 +97,13 @@ export const COMMITTEE_MEMBERS: readonly CommitteeMember[] = [
     id: 'anurag-deep',
     name: "Shri. Anurag Deep",
     committeeRole: 'MEMBER',
-    title: "Head of AI Delivery, ReBIT",
+    title: "Head of AI Delivery at ReBIT",
     initials: 'SAD',
     // Bio drafted from ReBIT's internal welcome announcement; not yet on rebit.org.in.
     photo: '/assets/people/anurag-deep.webp',
     banner: '/assets/people/anurag-deep-banner.webp',
     bio: [
-      "Shri. Anurag Deep is currently the AI Head – BU 8 Delivery at ReBIT. He has more than 21 years of experience in Data Science, Artificial Intelligence and Machine Learning, Statistics and Cloud Computing, across the Healthcare, Banking and Financial Services, and Technology sectors. Before joining ReBIT, he held roles at Dell UK, IKS and CitiusTech, where he led several AI-driven transformation initiatives, including Generative AI and Agentic AI programs, NLP-based clinical solutions and AI model governance frameworks, consistently translating emerging technologies into meaningful business outcomes. At ReBIT, Anurag leads the AI strategy and product roadmap, GenAI and Agentic AI initiatives, Data Science delivery and AI governance. He works closely with RBI’s business and technology leadership to drive enterprise-wide AI adoption and execution, and plays a key role in advancing the organisation’s strategic AI priorities.",
+      "Shri. Anurag Deep is currently the Head of AI Delivery at ReBIT. He has more than 21 years of experience in Data Science, Artificial Intelligence and Machine Learning, Statistics and Cloud Computing, across the Healthcare, Banking and Financial Services, and Technology sectors. Before joining ReBIT, he held roles at Dell UK, IKS and CitiusTech, where he led several AI-driven transformation initiatives, including Generative AI and Agentic AI programs, NLP-based clinical solutions and AI model governance frameworks, consistently translating emerging technologies into meaningful business outcomes. At ReBIT, Anurag leads the AI strategy and product roadmap, GenAI and Agentic AI initiatives, Data Science delivery and AI governance. He works closely with RBI’s business and technology leadership to drive enterprise-wide AI adoption and execution, and plays a key role in advancing the organisation’s strategic AI priorities.",
     ],
   },
 ];

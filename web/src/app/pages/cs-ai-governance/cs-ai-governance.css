@@ -69,12 +69,12 @@
 .modal-close:focus-visible{outline:2px solid #5B7EE8;outline-offset:2px}
 .modal-drag-handle{display:flex;justify-content:center;padding:16px 0 4px}
 .drag-bar{width:40px;height:5px;border-radius:999px;background:#ddd6f8}
-.modal-banner{position:relative;margin:8px 16px 0;border-radius:16px;overflow:hidden;height:clamp(300px,28vw,350px);background:#f1f5f9}
+.modal-banner{position:relative;margin:8px 16px 0;border-radius:16px;overflow:hidden;height:max(140px,min(clamp(300px,28vw,350px),45vh));background:#f1f5f9}
 .banner-photo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .banner-photo-inner{height:100%;object-fit:cover;object-position:top;width:100%}
 .banner-initials{font-size:clamp(40px,8vw,72px);font-weight:800;opacity:.6;letter-spacing:-.04em}
 .banner-gradient{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,22,40,.72) 0%,rgba(10,22,40,.18) 60%,transparent 100%);pointer-events:none}
-.banner-info{position:absolute;bottom:20px;left:20px;z-index:10}
+.banner-info{position:absolute;bottom:20px;left:20px;right:72px;z-index:10}
 .banner-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid;font-size:10px;font-weight:700;letter-spacing:.08em;background:#ffffffeb;margin-bottom:8px}
 .banner-tag-dot{width:6px;height:6px;border-radius:50%}
 .banner-name{color:#fff;font-size:clamp(18px,2.5vw,26px);font-weight:800;letter-spacing:-.025em;line-height:1.15;margin-bottom:2px}
@@ -85,6 +85,8 @@
 .banner-nav:focus-visible{outline:2px solid #5B7EE8;outline-offset:2px}
 .banner-prev{left:12px}
 .banner-next{right:12px}
+/* Short (landscape phone) banners: arrows to the top so they clear the name, and frame the face rather than the top edge. */
+@media (max-height:500px){.banner-nav{top:12px;transform:none}.banner-nav:hover{transform:scale(1.1)}.banner-photo-inner{object-position:50% 22%}}
 .modal-detail{padding:24px 20px;max-height:35vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#DDD6F8 transparent}
 @media(min-width:768px){.modal-detail{padding:24px 20px}
 }
@@ -96,6 +98,10 @@
 .jump-dot.active{width:26px}
 .jump-dot:hover{transform:scale(1.25)}
 .jump-dot:focus-visible{outline:2px solid #5B7EE8;outline-offset:2px}
+/* Touch: keep the dots small but give each a 32px+ tap area that doesn't overlap its neighbours. */
+.jump-dot{position:relative}
+.jump-dot::before{content:"";position:absolute;inset:-12px -12px}
+@media (pointer:coarse){.jump-dots{gap:8px 24px}}
 @keyframes fadeIn{0%{opacity:0}
 to{opacity:1}
 }
@@ -110,7 +116,7 @@ to{transform:translateY(0);opacity:1}
 }
 
 
-.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
+.kpi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:2.5rem}
 @media(min-width:1024px){.kpi-grid{grid-template-columns:repeat(4,1fr)}
 }
 .kpi-card{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:#ffffff29;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 20px #0000001a;border:1px solid rgba(255,255,255,.09)}
@@ -119,6 +125,8 @@ to{transform:translateY(0);opacity:1}
 .kpi-icon   :host     svg{width:20px;height:20px}
 .kpi-value{color:#0a1628;font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:0}
 .kpi-label{color:#3d4651;font-size:12px;font-weight:500;margin-top:2px;margin-bottom:0}
+/* Narrow phones: stack the icon over the figure so both KPI columns fit without clipping. */
+@media(max-width:399px){.kpi-grid{gap:.75rem}.kpi-card{flex-direction:column;align-items:flex-start;gap:.5rem;padding:.875rem}}
 
 
 /* Page-local: six members sit in two even rows of three (the live grid's 1024–1199px layout). */
