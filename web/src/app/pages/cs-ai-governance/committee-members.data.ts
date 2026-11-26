@@ -1,7 +1,9 @@
 /**
- * CS & AI Governance Sub Committee membership (source: committee agenda deck, slide 6).
+ * AI CS Sub Committee membership (source: committee agenda deck, slide 6).
  * Names, titles, photographs and bios are as published on rebit.org.in
  * (/leadership, /executive-team, /committee-members). Bios are verbatim.
+ * Shri. Niju Mohan is from /executive-team. Shri. Anurag Deep (Head of AI Delivery) has a
+ * supplied photograph and a placeholder bio until his profile is on the site.
  * Smt. Darshana Kulkarni has no photograph or bio on the site, so the card uses
  * initials, matching how /committee-members shows her.
  */
@@ -76,6 +78,31 @@ export const COMMITTEE_MEMBERS: readonly CommitteeMember[] = [
     banner: '/assets/people/mahesh-gharat-banner.webp',
     bio: [
       "With over 24 years of extensive experience in Cybersecurity, Mahesh brings expertise in Cloud, Network, and Application Architecture Reviews, Vulnerability Assessments, Penetration Testing, and Web/Mobile Application, API, and IoT Security Testing. Before joining ReBIT, Mahesh led the Cybersecurity practice at CitiusTech for over a decade. His prior roles include Associate Director at KPMG and key positions at Wipro, Deloitte & Touche, and Sify Assure. Throughout his career, Mahesh has been instrumental in setting up Information Security Management Systems (ISMS) and Cybersecurity Risk Management frameworks for major clients across the USA, Australia, Southeast Asia, and the Middle East. An engineering graduate from Mumbai University, Mahesh is also a Certified Information Systems Security Professional (CISSP),Certified Information Systems Auditor (CISA), and holds ISO 27001 and BS 25999 Lead Auditor certifications.",
+    ],
+  },
+  {
+    id: 'niju-mohan',
+    name: "Shri. Niju Mohan",
+    committeeRole: 'MEMBER',
+    title: "Group Vice President – Systems Audit, ReBIT",
+    initials: 'SNM',
+    photo: '/assets/people/niju-mohan.webp',
+    banner: '/assets/people/niju-mohan-banner.webp',
+    bio: [
+      'Niju is an Information security, Risk Management and Audit professional with more than 25 years’ experience. He brings cross-functional expertise in information security (strategy, design, and implementation), System Audits, Governance, Risk, Compliance, Data privacy and Business continuity and Disaster Recovery. He specializes in the financial sector with extensive knowledge in banking and brings expertise in Security, Network , Cloud and Application Architecture Reviews.Before joining ReBIT, Niju was the CISO at SBM Bank India Ltd. Prior to SBM Bank he has worked in Indian Banks (HDFC Bank and IDBI Intech ltd.), Multinational banks (ABN Amro NV and Bank of America Continuum) and NBFC (Fullerton India). He has worked in all the three lines of defense in banks i.e. Implementation, Risk management and Audit. In his various roles he has focused on improving the security architecture of the entity he served and was instrumental in getting many of them certified on ISO 27001 and PCI DSS standards.He is a Science graduate from Mumbai University with a Post Graduate Diploma in management studies from NMIMS Mumbai. Niju is also a Certified Information Systems Auditor (CISA), COBIT Implementation certified and a Certified Cisco Systems Instructor (CCSI).',
+    ],
+  },
+  {
+    id: 'anurag-deep',
+    name: "Shri. Anurag Deep",
+    committeeRole: 'MEMBER',
+    title: "Head of AI Delivery, ReBIT",
+    initials: 'SAD',
+    // Placeholder photo and bio until ReBIT publishes his profile.
+    photo: '/assets/people/anurag-deep.webp',
+    banner: '/assets/people/anurag-deep-banner.webp',
+    bio: [
+      'Shri. Anurag Deep is the Head of AI Delivery at ReBIT. His full profile will be published here soon.',
     ],
   },
 ];

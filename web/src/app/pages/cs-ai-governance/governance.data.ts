@@ -1,12 +1,12 @@
 /**
- * Committee content, transcribed from the CS & AI Governance Sub Committee agenda deck
+ * Committee content, transcribed from the AI CS Sub Committee agenda deck
  * (slides 5, 6, 21 and 23). Wording is kept as in the deck; only capitalisation and
  * punctuation are normalised to the site's house style.
  */
 import { ControlPhase, Principle, Responsibility } from './committee.model';
 
 export const MANDATE =
-  'All AI-related decisions are routed through the CS & AI Governance Sub Committee. ' +
+  'All AI-related decisions are routed through the AI CS Sub Committee. ' +
   'The committee provides strategic direction, approves policy, and owns AI risk across the organisation.';
 
 export const MEETING_FACTS = {

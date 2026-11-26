@@ -34,7 +34,7 @@ export class CsAiGovernance {
   protected readonly crumbs: readonly Crumb[] = [
     { label: 'Who We Are', url: '/leadership' },
     { label: 'Committee Members', url: '/committee-members' },
-    { label: 'CS & AI Governance Sub Committee' },
+    { label: 'AI CS Sub Committee' },
   ];
   protected readonly members = COMMITTEE_MEMBERS;
   protected readonly mandate = MANDATE;

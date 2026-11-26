@@ -5,7 +5,7 @@
     <div class="hero-container">
       <app-breadcrumb [items]="crumbs" />
       <div class="hero-content">
-        <h1 class="hero-title">CS &amp; AI Governance Sub Committee</h1>
+        <h1 class="hero-title">AI CS Sub Committee</h1>
         <p class="hero-subtitle">The board-level committee that oversees cyber security and AI at ReBIT: it approves AI policy, reviews AI incidents and usage, and traces every AI control to RBI's FREE-AI framework.</p>
       </div>
       <div class="kpi-grid">
@@ -30,7 +30,7 @@
   </section>
 
   <!-- Mandate: Our Story's word-by-word statement, scrubbed with GSAP ScrollTrigger. -->
-  <app-mandate-statement [text]="mandate" brandPhrase="CS & AI Governance Sub Committee." />
+  <app-mandate-statement [text]="mandate" brandPhrase="AI CS Sub Committee." />
 
   <!-- Committee: /leadership director cards + profile modal. -->
   <section class="content-section" id="members" aria-labelledby="members-title">
@@ -127,7 +127,7 @@
         @for (para of m.bio; track $index) {
           <p class="modal-bio">{{ para }}</p>
         } @empty {
-          <p class="modal-bio">{{ m.name }}, {{ m.title }}, is a member of the CS &amp; AI Governance Sub Committee.</p>
+          <p class="modal-bio">{{ m.name }}, {{ m.title }}, is a member of the AI CS Sub Committee.</p>
         }
       </div>
       <div class="jump-dots-wrapper">
