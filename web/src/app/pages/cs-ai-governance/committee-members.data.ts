@@ -3,7 +3,8 @@
  * Names, titles, photographs and bios are as published on rebit.org.in
  * (/leadership, /executive-team, /committee-members). Bios are verbatim.
  * Shri. Niju Mohan is from /executive-team. Shri. Anurag Deep (Head of AI Delivery) has a
- * supplied studio photograph and a placeholder bio until his profile is on the site.
+ * supplied studio photograph (wall extended on the left for framing) and a bio drafted from his
+ * welcome announcement, until his profile is on the site.
  * Smt. Darshana Kulkarni has no photograph or bio on the site, so the card uses
  * initials, matching how /committee-members shows her.
  */
@@ -98,11 +99,11 @@ export const COMMITTEE_MEMBERS: readonly CommitteeMember[] = [
     committeeRole: 'MEMBER',
     title: "Head of AI Delivery, ReBIT",
     initials: 'SAD',
-    // Placeholder bio until ReBIT publishes his profile.
-    photo: '/assets/people/anurag-deep.png',
-    banner: '/assets/people/anurag-deep.png',
+    // Bio drafted from ReBIT's internal welcome announcement; not yet on rebit.org.in.
+    photo: '/assets/people/anurag-deep.webp',
+    banner: '/assets/people/anurag-deep-banner.webp',
     bio: [
-      'Shri. Anurag Deep is the Head of AI Delivery at ReBIT. His full profile will be published here soon.',
+      "Shri. Anurag Deep is currently the AI Head – BU 8 Delivery at ReBIT. He has more than 21 years of experience in Data Science, Artificial Intelligence and Machine Learning, Statistics and Cloud Computing, across the Healthcare, Banking and Financial Services, and Technology sectors. Before joining ReBIT, he held roles at Dell UK, IKS and CitiusTech, where he led several AI-driven transformation initiatives, including Generative AI and Agentic AI programs, NLP-based clinical solutions and AI model governance frameworks, consistently translating emerging technologies into meaningful business outcomes. At ReBIT, Anurag leads the AI strategy and product roadmap, GenAI and Agentic AI initiatives, Data Science delivery and AI governance. He works closely with RBI’s business and technology leadership to drive enterprise-wide AI adoption and execution, and plays a key role in advancing the organisation’s strategic AI priorities.",
     ],
   },
 ];
