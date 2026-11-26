@@ -3,7 +3,7 @@
  * Names, titles, photographs and bios are as published on rebit.org.in
  * (/leadership, /executive-team, /committee-members). Bios are verbatim.
  * Shri. Niju Mohan is from /executive-team. Shri. Anurag Deep (Head of AI Delivery) has a
- * supplied photograph (240px of wall mirrored on the left to frame him wider) and a bio drafted from his
+ * supplied photograph (real wall extended on the left to frame him wider; the photo itself is untouched) and a bio drafted from his
  * welcome announcement, until his profile is on the site.
  * Smt. Darshana Kulkarni has no photograph or bio on the site, so the card uses
  * initials, matching how /committee-members shows her.
