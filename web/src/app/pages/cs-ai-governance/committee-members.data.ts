@@ -3,7 +3,7 @@
  * Names, titles, photographs and bios are as published on rebit.org.in
  * (/leadership, /executive-team, /committee-members). Bios are verbatim.
  * Shri. Niju Mohan is from /executive-team. Shri. Anurag Deep (Head of AI Delivery) has a
- * supplied photograph and a placeholder bio until his profile is on the site.
+ * supplied studio photograph and a placeholder bio until his profile is on the site.
  * Smt. Darshana Kulkarni has no photograph or bio on the site, so the card uses
  * initials, matching how /committee-members shows her.
  */
@@ -98,9 +98,9 @@ export const COMMITTEE_MEMBERS: readonly CommitteeMember[] = [
     committeeRole: 'MEMBER',
     title: "Head of AI Delivery, ReBIT",
     initials: 'SAD',
-    // Placeholder photo and bio until ReBIT publishes his profile.
-    photo: '/assets/people/anurag-deep.webp',
-    banner: '/assets/people/anurag-deep-banner.webp',
+    // Placeholder bio until ReBIT publishes his profile.
+    photo: '/assets/people/anurag-deep.png',
+    banner: '/assets/people/anurag-deep.png',
     bio: [
       'Shri. Anurag Deep is the Head of AI Delivery at ReBIT. His full profile will be published here soon.',
     ],
