@@ -1,13 +1,13 @@
-# CS & AI Governance Sub Committee page (rebit.org.in)
+# AI CS Sub Committee page (rebit.org.in)
 
-An Angular 21 page for ReBIT's CS & AI Governance Sub Committee, built to drop into the
+An Angular 21 page for ReBIT's AI CS Sub Committee, built to drop into the
 rebit.org.in Angular app and look identical to the rest of the site.
 
 ## Run the preview
 
 ```bash
 npm ci
-npx ng serve              # dev server: http://localhost:4200/committee-members/cs-ai-governance
+npx ng serve              # dev server: http://localhost:4200/committee-members/ai-cs-subcommittee
 # or the production build:
 npx ng build && node scripts/serve.mjs 4300
 ```
@@ -59,7 +59,7 @@ Hovers, the profile modal and the menus use the site's own CSS transitions.
 ## Merging into rebit.org.in
 
 1. Copy `src/app/pages/cs-ai-governance/` and `src/app/shared/gsap.service.ts` into the site app; add `gsap@3.15.1`.
-2. Add the route `committee-members/cs-ai-governance` (lazy `loadComponent`, see `app.routes.ts`).
+2. Add the route `committee-members/ai-cs-subcommittee` (lazy `loadComponent`, see `app.routes.ts`).
 3. Use the site's own `app-breadcrumb` and `app-page-navigation`. The copies in `src/app/shared/` match their markup.
 4. Set `environment.siteOrigin` to `''`, or drop `SiteUrlPipe` and use `routerLink`.
 5. Copy `public/assets/people/*` into the site's assets, or upload them to the CMS.

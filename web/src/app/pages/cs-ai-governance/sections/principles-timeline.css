@@ -40,3 +40,6 @@ ol.timeline-grid { list-style: none; margin: 0; padding: 0; }
 }
 .milestone-title { margin-bottom: 8px; }
 .milestone-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Cards slide in from +-56px; clip so they never widen the page before they reveal. */
+:host { display: block; overflow-x: clip; }
